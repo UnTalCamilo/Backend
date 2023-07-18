@@ -32,8 +32,9 @@ const postPedidoProd = async (req, res) => {
 const putPedidoProd = async (req, res) => {
     try {
         let idPedidoProd = req.params.id;
+        let { cantidad } = req.body;
         let pedidoProd = await Models.PedidoProducto.findByPk(idPedidoProd);
-        pedidoProd = await pedidoProd.update(req.body);
+        pedidoProd = await pedidoProd.update({ cantidad: cantidad });
         res.status(200).json(pedidoProd);
     } catch (error) {
         console.log(error);

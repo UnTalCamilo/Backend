@@ -1,4 +1,31 @@
 import Models from '../models/index.js';
+import jwt from 'jsonwebtoken';
+
+const login = async (req, res) => {
+    try {
+        let { email, password } = req.body;
+        let cliente = await Models.Cliente.findOne({
+            attributes: ['idCliente', 'identificacion', 'nombre', 'apellido', 'email', 'rol'],
+            where: {
+                email: email,
+                contrasena: password
+            }
+        });
+        
+        if (cliente) {
+            console.log(cliente);
+            let data = JSON.stringify(cliente);
+            let token = jwt.sign(data, 'secretKey');
+            res.status(200).send({ token });
+        } else {
+            res.status(401).json({ message: 'Credenciales incorrectas' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error en el servidor' });
+    }
+
+}
 
 const getClientes = async (req, res) => {
     try {
@@ -46,6 +73,7 @@ const deleteCliente = async (req, res) => {
 
 
 export default {
+    login,
     getClientes,
     postCliente,
     putCliente,

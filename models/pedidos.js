@@ -12,12 +12,10 @@ const Pedido = sequelize.define('pedidos', {
         allowNull: false
     },
     fechaSolicitud: {
-        type: DataTypes.DATE,
-        allowNull: false
+        type: DataTypes.DATE
     },
     estado: {
-        type: DataTypes.INTEGER,
-        allowNull: true
+        type: DataTypes.INTEGER
     }
 }, {
     timestamps: false

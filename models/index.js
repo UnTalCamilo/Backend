@@ -18,7 +18,7 @@ Pedido.belongsTo(Cliente, {
 });
 
 // pedido - pedidoProducto
-Pedido.hasMany(PedidoProducto, {
+Pedido.hasOne(PedidoProducto, {
     foreignKey: 'idPedido',
     onDelete: 'CASCADE',
     hooks: true

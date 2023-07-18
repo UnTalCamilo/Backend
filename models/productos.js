@@ -8,16 +8,19 @@ const Producto = sequelize.define('productos', {
         autoIncrement: true
     },
     nombre: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING,
         allowNull: false
     },
     descripcion: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING,
         allowNull: false
     },
     precio: {
         type: DataTypes.FLOAT,
         allowNull: false
+    },
+    imagen: {
+        type: DataTypes.STRING,
     }
 }, {
     timestamps: false

@@ -1,6 +1,9 @@
 import express from 'express';
 import routes  from './routes/routes.js';
 import sequelize from './Database/database.js';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 
 //json 
@@ -8,9 +11,15 @@ import sequelize from './Database/database.js';
 
 const app = express();
 const port = 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+app.use(cors());
 app.set('port', port);
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 app.use(routes)
 
